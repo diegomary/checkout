@@ -20,8 +20,7 @@ public class ProductScanner {
     public double totalPrice;
     private List<Product> flowOfProductsInSession;    
     public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };    
-    public double GrandTotal(){
-        
+    public double GrandTotal(){        
         List<String> productOccurrencies = new ArrayList<String>();        
         Set<String> uniqueSkus = new HashSet<>();        
         flowOfProductsInSession.forEach(pr ->  {

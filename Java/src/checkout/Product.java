@@ -6,15 +6,12 @@ import java.math.BigDecimal;
  */
 public class Product {
     
-    private    String  sku;
-    private  double unitPrice;   
-    private  boolean  isOnOffer;
+    private String  sku;
+    private double unitPrice;   
+    private boolean  isOnOffer;
     private int quantityOnOffer;
-    private double offerPrice;
-    
-    public Product(){
-    
-    };
+    private double offerPrice;  
+   
     
     public Product(String _sku, double  _unitPrice , boolean _isOnOffer, int  _quantityOnOffer , double _offerPrice){
         this.sku = _sku;
