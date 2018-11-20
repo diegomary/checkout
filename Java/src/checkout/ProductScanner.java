@@ -19,18 +19,19 @@ public class ProductScanner {
     
     public double totalPrice;
     private List<Product> flowOfProductsInSession;    
-    public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };    
+    public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };
+    
     public double GrandTotal(){        
-        List<String> productOccurrencies = new ArrayList<String>();        
+        List<String> productOccurrences = new ArrayList<String>();        
         Set<String> uniqueSkus = new HashSet<>();        
         flowOfProductsInSession.forEach(pr ->  {
             uniqueSkus.add(pr.getSku());
-            productOccurrencies.add(pr.getSku());
+            productOccurrences.add(pr.getSku());
         });
        
         for(String usku :uniqueSkus) {
             
-            int singleProductOccurrency = Collections.frequency(productOccurrencies, usku);  //3         
+            int singleProductOccurrency = Collections.frequency(productOccurrences, usku);  //3         
             Product candidateProduct = flowOfProductsInSession.stream().filter(pr -> usku.equals(pr.getSku())).findAny().orElse(null);
             if(candidateProduct.getIsOnOffer()) {
                 
