@@ -31,44 +31,8 @@ public class Checkout {
         FlowOfProductsInSession.add(prA);
         FlowOfProductsInSession.add(prA);
         FlowOfProductsInSession.add(prB);
-        // Phase 4 Checkout
-        // Phase 4A Initialization of SKUs for purchase session and list of products bought       
-        List<String> productOccurrencies = new ArrayList<String>();        
-        Set<String> uniqueSkus = new HashSet<>();        
-        FlowOfProductsInSession.forEach(pr ->  {
-            uniqueSkus.add(pr.getSku());
-            productOccurrencies.add(pr.getSku());
-        });
-        // Phase 4B Declaring grand total variable
-        double totalPrice = 0;
- 
-        // Phase 4C calculating sum of each product and adding it to the grand total
-        for(String usku :uniqueSkus) {
-            
-            int singleProductOccurrency = Collections.frequency(productOccurrencies, usku);  //3         
-            Product candidateProduct = FlowOfProductsInSession.stream().filter(pr -> usku.equals(pr.getSku())).findAny().orElse(null);
-            if(candidateProduct.getIsOnOffer()) {
-                
-                int offerQuantity = candidateProduct.getQuantityOnOffer();
-                double offerPrice = candidateProduct.getOfferPrice();
-                double productPrice = candidateProduct.getUnitPrice();
-                int totalOfferQuantities = Math.round(singleProductOccurrency/offerQuantity);  
-                double discountForSingleOffer = ( productPrice * offerQuantity ) - offerPrice;
-                double discountForTotal = discountForSingleOffer * totalOfferQuantities;
-                double totalPriceForProduct = (singleProductOccurrency * productPrice) - discountForTotal;
-                totalPrice += totalPriceForProduct;
-                
-            }
-            else {
-                double productPrice = candidateProduct.getUnitPrice(); 
-                double totalPriceForProduct = productPrice * singleProductOccurrency;
-                totalPrice += totalPriceForProduct;
-            }
         
-        }
-        
-        System.out.println(totalPrice);
-     
-    }
-    
+        ProductScanner scanner = new ProductScanner(FlowOfProductsInSession);
+        System.out.println(scanner.GrandTotal());
+}
 }
