@@ -6,15 +6,22 @@ import java.math.BigDecimal;
  */
 public class Product {
     
-    private final   String  sku;
-    private  double unitPrice;
-    private  SpecialOffer  offer;
+    private    String  sku;
+    private  double unitPrice;   
+    private  boolean  isOnOffer;
+    private int quantityOnOffer;
+    private double offerPrice;
     
+    public Product(){
     
-    public Product(String _sku, double  _unitPrice , SpecialOffer _offer){
+    };
+    
+    public Product(String _sku, double  _unitPrice , boolean _isOnOffer, int  _quantityOnOffer , double _offerPrice){
         this.sku = _sku;
-        this.unitPrice = _unitPrice;
-        this.offer =  _offer;
+        this.unitPrice = _unitPrice;       
+        this.isOnOffer = _isOnOffer;
+        this.quantityOnOffer = _quantityOnOffer;
+        this.offerPrice = _offerPrice;
     }         
      
     public String getSku() {
@@ -23,11 +30,20 @@ public class Product {
     
     public double getUnitPrice() {
         return this.unitPrice;
+    }
+    
+    public boolean getIsOnOffer() {
+        return this.isOnOffer;
     }   
     
-    public SpecialOffer getOffer() {
-        return this.offer;
-    }   
+    public int getQuantityOnOffer() {
+        return this.quantityOnOffer;
+    } 
+    
+     public double getOfferPrice() {
+        return this.offerPrice;
+    } 
+    
     
 }
 

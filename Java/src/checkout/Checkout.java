@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 /**
  *
  * @author Diego
@@ -16,10 +15,11 @@ public class Checkout {
      */
     public static void main(String[] args) {
         // Phase 1 Product acquisition
-        Product prA = new Product("A", 0.5 ,new SpecialOffer("A",true,3, 1.30));        
-        Product prB = new Product("B",0.30,new SpecialOffer("B",true,2,0.45));  
-        Product prC = new Product("C",2.0,new SpecialOffer("C",false,1,2.0));  
-        Product prD = new Product("D",0.75,new SpecialOffer("D",false,1,0.75));
+        Product prA = new Product("A", 0.5 ,true, 3, 1.30);        
+        Product prB = new Product("B",0.30,true,2,0.45);  
+        Product prC = new Product("C",2.0,false,1,2.0);  
+        Product prD = new Product("D",0.75,false,1,0.75);
+        
         //Phase 2 Initialization of purchase session
         List<Product> FlowOfProductsInSession = new ArrayList<Product>();
         // Phase 3 Starting Purchase        
@@ -47,10 +47,10 @@ public class Checkout {
             
             int singleProductOccurrency = Collections.frequency(productOccurrencies, usku);  //3         
             Product candidateProduct = FlowOfProductsInSession.stream().filter(pr -> usku.equals(pr.getSku())).findAny().orElse(null);
-            if(candidateProduct.getOffer().getIsOnOffer()) {
+            if(candidateProduct.getIsOnOffer()) {
                 
-                int offerQuantity = candidateProduct.getOffer().getQuantityOnOffer();
-                double offerPrice = candidateProduct.getOffer().getOfferPrice();
+                int offerQuantity = candidateProduct.getQuantityOnOffer();
+                double offerPrice = candidateProduct.getOfferPrice();
                 double productPrice = candidateProduct.getUnitPrice();
                 int totalOfferQuantities = Math.round(singleProductOccurrency/offerQuantity);  
                 double discountForSingleOffer = ( productPrice * offerQuantity ) - offerPrice;
