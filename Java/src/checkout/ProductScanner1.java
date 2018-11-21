@@ -4,16 +4,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-/**
- *
- * @author Diego
- */
+
 public class ProductScanner1 {
     
     public double totalPrice;
     private final List<Product> flowOfProductsInSession; 
-    // Here for semplicity I am dependency injecting a simple list but in a real environment we can inject a product repo of purchases
-    // This class adheres to SOLID 1st principle since its sole responsability is to produce the Grand Total given a flow of purchase.
+    // Here for semplicity I am dependency injecting a simple list but in a real environment
+    // we can inject an object that implements a specific interface/contract to render pure the concept of DI.
     public ProductScanner1( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };
     
     public double GrandTotal(){        
@@ -31,12 +28,12 @@ public class ProductScanner1 {
                 int totalOfferQuantities = Math.round(singleProductOccurrency/offerQuantity);                
                 int rem = singleProductOccurrency % offerQuantity;                
                 this.totalPrice += ((candidateProduct.getOfferPrice() * totalOfferQuantities) + (candidateProduct.getUnitPrice() * rem));
-            }
-            else {
+                return;
+            }          
                 double productPrice = candidateProduct.getUnitPrice(); 
                 double totalPriceForProduct = productPrice * singleProductOccurrency;
                 this.totalPrice += totalPriceForProduct;
-            }
+           
         });
         
        return this.totalPrice;  
