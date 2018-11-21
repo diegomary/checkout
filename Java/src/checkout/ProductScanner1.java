@@ -15,16 +15,17 @@ import java.util.Set;
  *
  * @author Diego
  */
-public class ProductScanner {
+public class ProductScanner1 {
     
     public double totalPrice;
-    private final List<Product> flowOfProductsInSession;    
-    public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };
+    private final List<Product> flowOfProductsInSession; 
+    // Here for semplicity I am dependency injecting a simple list but in a real environment we can inject a product repo of purchases
+    public ProductScanner1( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };
     
     public double GrandTotal(){        
         List<String> productOccurrences = new ArrayList<String>();        
         Set<String> uniqueSkus = new HashSet<>();        
-        flowOfProductsInSession.forEach(pr ->  {
+        flowOfProductsInSession.forEach(pr -> {
             uniqueSkus.add(pr.getSku());
             productOccurrences.add(pr.getSku());
         });
@@ -34,14 +35,10 @@ public class ProductScanner {
             Product candidateProduct = flowOfProductsInSession.stream().filter(pr -> usku.equals(pr.getSku())).findAny().orElse(null);
             if(candidateProduct.getIsOnOffer()) {
                 
-                int offerQuantity = candidateProduct.getQuantityOnOffer();
-                double offerPrice = candidateProduct.getOfferPrice();
-                double productPrice = candidateProduct.getUnitPrice();
-                int totalOfferQuantities = Math.round(singleProductOccurrency/offerQuantity);
-                double discountForSingleOffer = ( productPrice * offerQuantity ) - offerPrice;
-                double discountForTotal = discountForSingleOffer * totalOfferQuantities;
-                this.totalPrice += (singleProductOccurrency * productPrice) - discountForTotal;             
-                
+                int offerQuantity = candidateProduct.getQuantityOnOffer();                
+                int totalOfferQuantities = Math.round(singleProductOccurrency/offerQuantity);                
+                int rem = singleProductOccurrency % offerQuantity;                
+                this.totalPrice += ((candidateProduct.getOfferPrice() * totalOfferQuantities) + (candidateProduct.getUnitPrice() * rem));
             }
             else {
                 double productPrice = candidateProduct.getUnitPrice(); 
@@ -54,3 +51,4 @@ public class ProductScanner {
     }
     
 }
+

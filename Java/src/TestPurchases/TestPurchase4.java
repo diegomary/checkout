@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TDD;
+package TestPurchases;
 
 import checkout.Product;
 import checkout.Product;
@@ -15,15 +15,15 @@ import repository.ProductRepository;
  *
  * @author Diego
  */
-public class TestPurchase3 {
+public class TestPurchase4 {
     
-    public TestPurchase3(){}    
+    public TestPurchase4(){}    
     public static ArrayList<Product> Purchase() {
         
         ArrayList<Product> FlowOfProductsInSession = new ArrayList<Product>();        
-        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D First purchase  SCANNED
-        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D Second purchase    "  
-        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D  Third purchase    "  
+        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(0)); // SKU A First purchase  SCANNED
+        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(1)); // SKU B Second purchase    "  
+        FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D Third purchase    "  
         FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D Fourth purchase    "  
         FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D Fifth purchase     "  
         FlowOfProductsInSession.add(ProductRepository.ProducsAvailable().get(3)); // SKU D Sixth purchase     "  
@@ -33,4 +33,3 @@ public class TestPurchase3 {
         return FlowOfProductsInSession;
     }    
 }
-
