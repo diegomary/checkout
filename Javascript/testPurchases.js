@@ -71,7 +71,7 @@ module.exports = () => ({
         flow5.push(productsArray()[1]); // SKU B  
         flow5.push(productsArray()[1]); // SKU B 
         flow5.push(productsArray()[2]); // SKU C   
-        flow5.push(productsArray()[3]); // SKU D 
+        flow5.push(productsArray()[3]); // SKU D         
         return flow5;   
     }
 

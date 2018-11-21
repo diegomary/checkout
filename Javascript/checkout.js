@@ -4,7 +4,7 @@ module.exports = (flowOfPurchase) => {
     // Creating an object with skus as keys and the products occurrences as values
     let productOccurrences = skusOccObj(flowOfPurchase);    
     // Creating set of single products bought      
-    let productsBoughtSet = objSet(flowOfPurchase);
+    let productsBoughtSet = objSet(flowOfPurchase,'sku');
     // Calculating final total price by mapping each product and calculating its individual price
     // including those with discounts, before adding them up in the final reduce function  
     // We can use two different methods: priceTot1 and priceTot2  
@@ -25,14 +25,14 @@ const skusOccObj = (prArr) => {
     }, {});
 };
 
-const objSet = (prArr) => {
+const objSet = (prArr,prop) => {
     return prArr.filter((obj, pos, arr) => {
-        return arr.map(mapObj => mapObj['sku']).indexOf(obj['sku']) === pos;
+        return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
     });
 };
 
 const priceTot1 = (prSet, prOcc) => {
-    return [...prSet]
+    return prSet
     .map(pr => {
         let occ = prOcc[pr.sku];
         if (pr.onOffer) {
@@ -49,7 +49,7 @@ const priceTot1 = (prSet, prOcc) => {
 };
 
 const priceTot2 = (prSet, prOcc) => {
-    return [...prSet]
+    return prSet
     .map(pr => {
         let occ = prOcc[pr.sku];
         if (pr.onOffer) {
