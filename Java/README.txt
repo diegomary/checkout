@@ -1,12 +1,13 @@
-Here we are presenting 2 different solutions for the Java implementation.
+Here we I am presenting 2 different solutions for the Java implementation.
 
 They differ only slightly in the way the offers are calculated.
 
-We use SOLID single responsability principle and dependency injection.
+I have uses SOLID single responsability principle and dependency injection
+as well as TDD for the development.
 
-We think that the MVP of the given products be product B.
+In my opinion the MVP of the given products be product B.
 
-We flag the offer so that a product administrator can decide if the offer 
+I have  flagged the offers so that a product administrator can decide if the offer 
 for a certain product can be on air or not.
 
 The entire development has been accomplished using TDD since test first has been written 

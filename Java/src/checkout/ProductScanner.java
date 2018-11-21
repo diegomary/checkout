@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkout;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 /**
  *
  * @author Diego
@@ -18,16 +11,15 @@ import java.util.Set;
 public class ProductScanner {
     
     public double totalPrice;
-    private final List<Product> flowOfProductsInSession;    
-    public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };
-    
-    public double GrandTotal(){        
-        List<String> productOccurrences = new ArrayList<String>();        
-        Set<String> uniqueSkus = new HashSet<>();        
-        flowOfProductsInSession.forEach(pr ->  {
-            uniqueSkus.add(pr.getSku());
-            productOccurrences.add(pr.getSku());
-        });
+    private final List<Product> flowOfProductsInSession; 
+    // Here for semplicity I am dependency injecting a simple list but in a real environment we can inject a product repo of purchases
+    // This class adheres to SOLID 1st principle since the sole responsability is to produce the Grand Total given a flow of purchase.
+    public ProductScanner( List<Product> FlowOfProductsInSession ){ flowOfProductsInSession = FlowOfProductsInSession; };    
+    public double GrandTotal(){ 
+        
+        List<String> productOccurrences = new ArrayList<String>();              
+        flowOfProductsInSession.forEach(pr ->  { productOccurrences.add(pr.getSku()); });
+        Set<String> uniqueSkus = new HashSet<>(productOccurrences); 
        
         uniqueSkus.forEach((usku) -> {
             int singleProductOccurrency = Collections.frequency(productOccurrences, usku);     

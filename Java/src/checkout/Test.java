@@ -1,5 +1,4 @@
 package checkout;
-
 import TestPurchases.TestPurchase1;
 import TestPurchases.TestPurchase2;
 import TestPurchases.TestPurchase3;
@@ -9,7 +8,7 @@ import TestPurchases.TestPurchase5;
  *
  * @author Diego
  */
-public class Checkout {   
+public class Test {   
    
     /**
      * @param args the command line arguments
@@ -34,7 +33,7 @@ public class Checkout {
         scanner = new ProductScanner(TestPurchase4.Purchase());
         System.out.println("Solution 1: Test 2 Grand Total : "+ scanner.GrandTotal());
         
-         //Should return a Grand Total of 5.3
+         //Should return a Grand Total of 8.0
         scanner = new ProductScanner(TestPurchase5.Purchase());
         System.out.println("Solution 1: Test 5 Grand Total : "+ scanner.GrandTotal());
         
@@ -57,7 +56,7 @@ public class Checkout {
         scanner1 = new ProductScanner1(TestPurchase4.Purchase());
         System.out.println("Solution 1: Test 4 Grand Total : "+ scanner1.GrandTotal());
         
-        //Should return a Grand Total of 5.3
+        //Should return a Grand Total of 8.0
         scanner1 = new ProductScanner1(TestPurchase5.Purchase());
         System.out.println("Solution 1: Test 5 Grand Total : "+ scanner1.GrandTotal());
         
