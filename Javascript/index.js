@@ -1,27 +1,28 @@
-const product = require('./productObject.js');
-const checkout = require('./checkout.js')
+const tests = require('./testPurchases');
+const checkout = require('./checkout.js');
 
 
-// Initializing a list of products
-let prA = product('A', 0.5, true, 1.30, 3);
-let prB = product('B', 0.3, true, 0.45, 2);
-let prC = product('C', 2, false);
-let prD = product('D', 0.75, false);
+let firstFlow = tests().test1();
+//Should return 5.0
+let total1 = checkout(firstFlow);
+console.log("Results for the 2 methods, GrandTotal: ",total1);
 
-// Initializing array of products bought
-let productsBought = [];
+let secondFlow = tests().test2();
+//Should return 2.5
+let total2 = checkout(secondFlow);
+console.log("Results for the 2 methods, GrandTotal: ", total2);
 
-productsBought.push(prA);
-productsBought.push(prA);
-productsBought.push(prC);
-productsBought.push(prB);
-productsBought.push(prD);
-productsBought.push(prA);
-productsBought.push(prB);
-productsBought.push(prB);
-productsBought.push(prB);
+let thirdFlow = tests().test3();
+//Should return 6.0
+let total3 = checkout(thirdFlow);
+console.log("Results for the 2 methods, GrandTotal: ", total3);
 
-//Should return 4.95
-let total = checkout(productsBought);
+let fourthFlow = tests().test4();
+//Should return 5.3
+let total4 = checkout(fourthFlow);
+console.log("Results for the 2 methods, GrandTotal: ", total4);
 
-console.log(total);
+let fifthFlow = tests().test5();
+//Should return 8.0
+let total5 = checkout(fifthFlow);
+console.log("Results for the 2 methods, GrandTotal: ", total5);

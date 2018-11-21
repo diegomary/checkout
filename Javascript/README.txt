@@ -1,4 +1,4 @@
-Here we I am presenting 2 different solutions for the JavaScript implementation.
+Here I am presenting 2 different solutions for the JavaScript implementation.
 
 They differ only slightly in the way the offers are calculated.
 
@@ -10,9 +10,13 @@ I have  flagged the offers so that a product administrator can decide if the off
 for a certain product can be on air or not.
 
 
-
 The development has used the following environment.
 Node.js version 10.13.0
 Editor: Visual studio code with built in Node debugger.
 All native node features.
 No external frameworks.
+
+
+To launch the application just type
+
+node index.js
