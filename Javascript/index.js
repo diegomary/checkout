@@ -26,3 +26,4 @@ let fifthFlow = tests().test5();
 //Should return 8.0
 let total5 = checkout(fifthFlow);
 console.log("Results for the 2 methods, GrandTotal: ", total5);
+
